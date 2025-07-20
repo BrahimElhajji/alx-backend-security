@@ -41,6 +41,13 @@ INSTALLED_APPS = [
     'ratelimit',
 ]
 
+CELERY_BEAT_SCHEDULE = {
+    'detect-anomalies-every-hour': {
+        'task': 'ip_tracking.tasks.detect_anomalies',
+        'schedule': 3600.0,
+    },
+}
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
